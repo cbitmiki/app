@@ -18,6 +18,7 @@ namespace app.obj
         }
         
 // This part below seems like it might need to be in a different function
+// You should see new comments in here. Hopefully...fingers crossed lol
 
         foreach (char character in innitialGuessWordState)
         {
