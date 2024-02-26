@@ -8,38 +8,10 @@ namespace app.obj
 {
     public class HangmanGame
     {
-       public static Char[] PrintGameBoard(int wordLength)
+       public static void StartGame()
        {
-
-        List<char> innitialGuessWordState = new List<char>();
-        for (int i = 0; i < wordLength; i++)
-        {
-            innitialGuessWordState.Add('_');
-        }
-        
-// This part below seems like it might need to be in a different function
-
-        foreach (char character in innitialGuessWordState)
-        {
-            Console.Write(character + " "); 
-        }
-
-       Char[] innitialGuessWordStateArray = innitialGuessWordState.ToArray(); 
-
-       return innitialGuessWordStateArray;   
-
+        Word.InitializeGameBoard(Word.GetWordStringLength(Word.GetAWord()));
+        Player.PlayerGuess();        
        }
-
-       public static int GetGameStringLength(string chosenWord)
-       {
-
-        int chosenWordLength = 0;
-
-        foreach (char letter in chosenWord)
-        {
-           chosenWordLength++; 
-        }
-        return chosenWordLength;
-       } 
     }
 }
