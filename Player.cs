@@ -1,25 +1,41 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace app.obj
 {
     public class Player
     {
-        public static char PlayerGuess()
+        public static int playerLives = 5;
+        public static string RequestPlayerGuess()
         {
             Console.Write("Guess: ");
-            char playerGuess = char.Parse(Console.ReadLine());
+            return Console.ReadLine();
+        }
 
-            while (Char.IsDigit(playerGuess) == true || playerGuess == null) // still need a condition that prevents player from selecting the same word over and over again
+        public static bool CheckPlayerGuess(string playerGuessText)
+        {
+            char playerGuess;
+
+            if (char.TryParse(playerGuessText, out playerGuess) == true && Char.IsLetter(playerGuess) == true && Word.wordBank.Contains(playerGuess) != true)
             {
-                Console.WriteLine("Not valid.");
-                Console.Write("Please guess a letter: ");
-                playerGuess = char.Parse(Console.ReadLine());
+                return true;
             }
+            else
+            { 
+                return false;
+            }
+        }
 
-            return playerGuess;
+        public static void CheckPlayerLives()
+        {
+            if (playerLives < 0)
+            {
+                Console.Clear();
+                Console.WriteLine("My program recognizes that the game is over!");
+            }
         }
     }
 }
