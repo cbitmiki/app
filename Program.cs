@@ -2,6 +2,4 @@
 
 Console.Title = "Hangman";
 
-
-HangmanGame.PrintGameBoard(HangmanGame.GetGameStringLength(Word.GetAWord()));
-Console.WriteLine(Word.GetAWord());
+HangmanGame.StartGame();
