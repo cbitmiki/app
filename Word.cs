@@ -13,7 +13,7 @@ namespace app.obj
         public static List<char> wordBank = new List<char>();
         public static string GetAWord()
         {
-            string[] allLines = File.ReadAllLines("Words.txt");
+            string[] allLines = File.ReadAllLines(@"C:\Users\Gamer\app\Words.txt");
             Random r = new Random();
             return (allLines[r.Next(0,allLines.Length)]);
         }

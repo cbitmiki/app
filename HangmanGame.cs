@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO.Compression;
 using System.Linq;
+using System.Net.Cache;
 using System.Threading.Tasks;
 
 namespace app.obj
@@ -11,7 +12,12 @@ namespace app.obj
        public static void StartGame()
        {
         Word.InitializeGameBoard(Word.GetWordStringLength(Word.GetAWord()));
-        Player.PlayerGuess();        
+        Player.CheckPlayerGuess(Player.RequestPlayerGuess());  
+
+        if (Player.CheckPlayerGuess(Player.RequestPlayerGuess()) == true)
+        {
+            Word.CheckCharToWord(Word.GetAWord(),Player.RequestPlayerGuess())
+        }     
        }
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace app.obj
@@ -8,29 +9,24 @@ namespace app.obj
     public class Player
     {
         public static int playerLives = 5;
-        public static char PlayerGuess()
+        public static string RequestPlayerGuess()
         {
             Console.Write("Guess: ");
-            string playerGuessString = Console.ReadLine();
+            return Console.ReadLine();
+        }
 
-            while (playerGuessString.Length != 1)
+        public static bool CheckPlayerGuess(string playerGuessText)
+        {
+            char playerGuess;
+
+            if (char.TryParse(playerGuessText, out playerGuess) == true && Char.IsLetter(playerGuess) == true && Word.wordBank.Contains(playerGuess) != true)
             {
-                Console.WriteLine("Please guess one letter:");
-                playerGuessString = Console.ReadLine();
+                return true;
             }
-
-            char playerGuess = Convert.ToChar(playerGuessString);
-
-
-
-            while (Char.IsDigit(playerGuess) == true || playerGuess == null || Word.wordBank.Contains(playerGuess) == true) // still need a condition that prevents player from selecting the same word over and over again
-            {
-                Console.WriteLine("Not valid.");
-                Console.Write("Please guess a letter: ");
-                playerGuess = char.Parse(Console.ReadLine());
+            else
+            { 
+                return false;
             }
-
-            return playerGuess;
         }
 
         public static void CheckPlayerLives()
