@@ -9,10 +9,21 @@ namespace app.obj
     public class Player
     {
         public static int playerLives = 5;
-        public static string RequestPlayerGuess()
+        public static char RequestPlayerGuess()
         {
+            
             Console.Write("Guess: ");
-            return Console.ReadLine();
+            string userInput = Console.ReadLine();
+
+            while (!CheckPlayerGuess(userInput))
+            {
+                Console.Write("Guess: ");
+                userInput = Console.ReadLine();
+            }
+
+            char userInputChar = Convert.ToChar(userInput);
+            
+            return userInputChar;
         }
 
         public static bool CheckPlayerGuess(string playerGuessText)
@@ -27,6 +38,14 @@ namespace app.obj
             { 
                 return false;
             }
+        }
+
+        public static char SendPlayerGuess(bool playerGuessStatus, char playerGuess)
+        {
+            if (playerGuessStatus == true) return playerGuess;
+            else return RequestPlayerGuess();
+
+            
         }
 
         public static void CheckPlayerLives()
