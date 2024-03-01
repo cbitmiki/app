@@ -8,16 +8,14 @@ namespace app.obj
 {
     public class Player
     {
-        public static int playerLives = 5;
-        public static char RequestPlayerGuess()
+        public static char RequestPlayerGuess(Game g)
         {
             
-            Console.Write("Guess: ");
             string userInput = Console.ReadLine();
 
-            while (!CheckPlayerGuess(userInput))
+            while (!CheckPlayerGuess(userInput, g))
             {
-                Console.Write("Guess: ");
+                g.DisplayGame();
                 userInput = Console.ReadLine();
             }
 
@@ -26,11 +24,11 @@ namespace app.obj
             return userInputChar;
         }
 
-        public static bool CheckPlayerGuess(string playerGuessText)
+        public static bool CheckPlayerGuess(string playerGuessText, Game g)
         {
             char playerGuess;
 
-            if (char.TryParse(playerGuessText, out playerGuess) == true && Char.IsLetter(playerGuess) == true && Word.wordBank.Contains(playerGuess) != true)
+            if (char.TryParse(playerGuessText, out playerGuess) == true && Char.IsLetter(playerGuess) == true && !g.AlreadyGuessed(playerGuess))
             {
                 return true;
             }
