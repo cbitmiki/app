@@ -2,4 +2,4 @@
 
 Console.Title = "Hangman";
 
-HangmanGame.StartGame();
+HangmanGame.InitializeGame();

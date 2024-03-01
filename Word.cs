@@ -13,7 +13,7 @@ namespace app.obj
         public static List<char> wordBank = new List<char>();
         public static string GetAWord()
         {
-            string[] allLines = File.ReadAllLines(@"C:\Users\Gamer\app\Words.txt");
+            string[] allLines = File.ReadAllLines(@"Words.txt");
             Random r = new Random();
             return (allLines[r.Next(0,allLines.Length)]);
         }
@@ -33,80 +33,28 @@ namespace app.obj
        public static Char[] InitializeGameBoard(int wordLength)
        {
 
-        List<char> innitialGuessWordState = new List<char>();
+        List<char> coveredBoard = new List<char>();
         for (int i = 0; i < wordLength; i++)
         {
-            innitialGuessWordState.Add('_');
+            coveredBoard.Add('_');
         }
         
 // This part below seems like it might need to be in a different function
 
-        foreach (char character in innitialGuessWordState)
+        foreach (char character in coveredBoard)
         {
             Console.Write(character + " "); 
         }
 
-       Char[] innitialGuessWordStateArray = innitialGuessWordState.ToArray(); 
+       Char[] coveredBoardArray = coveredBoard.ToArray(); 
 
-       return innitialGuessWordStateArray;   
+       return coveredBoardArray;   
 
        } 
-
-        public int CheckCharToWord (string chosenWord, char playerGuess)
-        {
-           
-            foreach (char letter in chosenWord)
-            {
-                int letterIndex = -1;
-                letterIndex++;
-
-                if (playerGuess == letter)
-                {
-                    return letterIndex; 
-                }
-            }
-            
-            return -1;
-        }
-
-        public void UpdateBoardState(char playerGuess, int letterIndex, char[] answer)
-        {
-            if (letterIndex >= 0)
-            {
-                answer[letterIndex] = playerGuess;
-                AddToWordBank(playerGuess);
-            }
-            else
-            {
-                AddToWordBank(playerGuess);
-                Player.playerLives--;
-                Player.CheckPlayerLives();
-            }
-        }
 
         public void AddToWordBank(char playerGuess)
         {
             wordBank.Add(playerGuess);
         }
-
-        public bool CheckWordComplete(Char[] answer, int chosenWordLength)
-        {
-            int letterCount = 0;
-
-            foreach (char c in answer)
-            {
-                if (Char.IsLetter(c) == true)
-                letterCount++;
-            }
-
-            if (letterCount == chosenWordLength)
-            {
-             Console.WriteLine("The code has recognized that you have won!");
-             return true;
-            }
-
-            return false;
-        }
-
     }
 }

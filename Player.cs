@@ -40,21 +40,5 @@ namespace app.obj
             }
         }
 
-        public static char SendPlayerGuess(bool playerGuessStatus, char playerGuess)
-        {
-            if (playerGuessStatus == true) return playerGuess;
-            else return RequestPlayerGuess();
-
-            
-        }
-
-        public static void CheckPlayerLives()
-        {
-            if (playerLives < 0)
-            {
-                Console.Clear();
-                Console.WriteLine("My program recognizes that the game is over!");
-            }
-        }
     }
 }
