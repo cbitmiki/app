@@ -17,6 +17,7 @@ namespace app.obj
         private int guessesRemaining = 5;
         private List<char> incorrectGuesses = new List<char>();
         private List<char> allGuesses = new List<char>();
+        string result = "lost";
 
         public Game(){}
         
@@ -29,7 +30,7 @@ namespace app.obj
                 DisplayGame();
                 UpdateGame(Player.RequestPlayerGuess(this));
             }
-
+            DisplayResult();
             DisplayWord();
         }
 
@@ -71,6 +72,11 @@ namespace app.obj
 
         public bool IsOver()
         {
+            if (!wordCovered.Contains('_'))
+            {
+                result = "won";
+            }
+
             return !wordCovered.Contains('_') || guessesRemaining == 0;
         }
        
@@ -114,6 +120,11 @@ namespace app.obj
        public bool AlreadyGuessed(char c)
        {
             return allGuesses.Contains(c);
+       }
+
+       public void DisplayResult()
+       {
+            Console.WriteLine($"You {result}.The word was {word}.");
        }
     }
 }
