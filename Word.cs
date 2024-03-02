@@ -12,7 +12,7 @@ namespace app.obj
     {
         public static string GetWord()
         {
-            string[] allLines = File.ReadAllLines(@"C:\Users\Gamer\app\Words.txt");
+            string[] allLines = File.ReadAllLines(@"/Users/b5gaming/app/Words.txt");
             Random r = new Random();
             return (allLines[r.Next(0,allLines.Length-1)]);
         }
