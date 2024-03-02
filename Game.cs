@@ -28,7 +28,6 @@ namespace app.obj
             {
                 DisplayGame();
                 UpdateGame(Player.RequestPlayerGuess(this));
-                guessesRemaining--;
             }
 
             DisplayWord();
@@ -49,6 +48,22 @@ namespace app.obj
 
         public void UpdateGame(char c)
         {
+            int i = 0;
+
+            foreach (char ch in word)
+            {
+                if (c == ch)
+                {
+                    wordCovered[i] = c;
+                }
+                i++;
+            }
+
+            if (!word.Contains(c))
+            {
+                guessesRemaining--;
+                incorrectGuesses.Add(c);
+            }
 
         }
 
